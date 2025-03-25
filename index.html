@@ -26,7 +26,7 @@
         const audio = document.getElementById('audio');
         const songTitle = document.getElementById('song-title');
 
-        // Array of songs to play
+        
         const songs = [
             { title: "Calm Music", src: "assets/music/calm.mp3" },
             { title: "Chill Music", src: "assets/music/chill.mp3" },
@@ -38,37 +38,37 @@
 
         let currentSongIndex = 0;
 
-        // Function to play or pause the audio
+        
         function togglePlayPause() {
             if (audio.paused) {
                 audio.play();
-                document.querySelector('.controls button:nth-child(2)').textContent = "⏸"; // Change to pause button
+                document.querySelector('.controls button:nth-child(2)').textContent = "⏸"; 
             } else {
                 audio.pause();
-                document.querySelector('.controls button:nth-child(2)').textContent = "▶️"; // Change to play button
+                document.querySelector('.controls button:nth-child(2)').textContent = "▶️"; 
             }
         }
 
-        // Function to load and play the next song
+        
         function nextSong() {
-            currentSongIndex = (currentSongIndex + 1) % songs.length; // Move to the next song
+            currentSongIndex = (currentSongIndex + 1) % songs.length; 
             loadSong(currentSongIndex);
         }
 
-        // Function to load and play the previous song
+        
         function prevSong() {
-            currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length; // Move to the previous song
+            currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length; 
             loadSong(currentSongIndex);
         }
 
-        // Function to load a song
+       
         function loadSong(index) {
-            audio.src = songs[index].src; // Set the new source
-            songTitle.textContent = songs[index].title; // Update the song title
-            audio.play(); // Play the song
+            audio.src = songs[index].src; 
+            songTitle.textContent = songs[index].title; 
+            audio.play(); 
         }
 
-        // Load the first song on start
+       
         loadSong(currentSongIndex);
     </script>
 </body>
