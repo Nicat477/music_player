@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="music-player">
+        <h2 id="song-title">Song Name</h2>
+        <audio id="audio" controls>
+            <source src="assets/music/calm.mp3" type="audio/mpeg">
+            <source src="assets/music/chill.mp3" type="audio/mpeg">
+            <source src="assets/music/relax.mp3" type="audio/mpeg">
+            <source src="assets/music/piano.mp3" type="audio/mpeg">
+        </audio>
+        <div class="controls">
+            <button onclick="prevSong()">⏮</button>
+            
+            <button onclick="nextSong()">⏭</button>
+        </div>
+    </div>
+    
+    <script>
+        const audio = document.getElementById('audio');
+        const songTitle = document.getElementById('song-title');
+
+        // Array of songs to play
+        const songs = [
+            { title: "Calm Music", src: "assets/music/calm.mp3" },
+            { title: "Chill Music", src: "assets/music/chill.mp3" },
+            { title: "Relax Music", src: "assets/music/relax.mp3" },
+            { title: "Piano Music", src: "assets/music/piano.mp3" },
+            { title: "Emotional Music", src: "assets/music/emotional.mp3" },
+            { title: "Comedy Music", src: "assets/music/comedy.mp3" }
+        ];
+
+        let currentSongIndex = 0;
+
+        // Function to play or pause the audio
+        function togglePlayPause() {
+            if (audio.paused) {
+                audio.play();
+                document.querySelector('.controls button:nth-child(2)').textContent = "⏸"; // Change to pause button
+            } else {
+                audio.pause();
+                document.querySelector('.controls button:nth-child(2)').textContent = "▶️"; // Change to play button
+            }
+        }
+
+        // Function to load and play the next song
+        function nextSong() {
+            currentSongIndex = (currentSongIndex + 1) % songs.length; // Move to the next song
+            loadSong(currentSongIndex);
+        }
+
+        // Function to load and play the previous song
+        function prevSong() {
+            currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length; // Move to the previous song
+            loadSong(currentSongIndex);
+        }
+
+        // Function to load a song
+        function loadSong(index) {
+            audio.src = songs[index].src; // Set the new source
+            songTitle.textContent = songs[index].title; // Update the song title
+            audio.play(); // Play the song
+        }
+
+        // Load the first song on start
+        loadSong(currentSongIndex);
+    </script>
+</body>
+</html>
